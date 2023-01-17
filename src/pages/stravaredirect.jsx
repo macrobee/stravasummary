@@ -27,6 +27,7 @@ const StravaRedirectPage = () => {
             expiresIn: data.expires_in,
             refreshToken: data.refresh_token,
           });
+          console.log(`user and token have been set`);
         }
 
         // const user = await getUserData(userID, accessToken);
@@ -39,7 +40,9 @@ const StravaRedirectPage = () => {
         navigate("/");
       }
     };
-    authenticate();
+    if (!user) {
+      authenticate();
+    }
   });
   return <div>Loading...</div>;
 };
