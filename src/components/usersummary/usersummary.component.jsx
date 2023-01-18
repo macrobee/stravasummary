@@ -2,7 +2,7 @@ import { UserSummaryDiv } from "./usersummary.styles";
 const UserSummary = ({ user }) => {
   const { id, firstname, lastname, sex, profile } = user;
   return (
-    <>Here's your data
+    <>
     <UserSummaryDiv>
       
       <img src={profile} alt="your profile" />

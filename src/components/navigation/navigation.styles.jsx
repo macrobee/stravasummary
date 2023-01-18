@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const NavBarDiv = styled.div`
+  position: relative;
   width: 100%;
   padding: 20px 40px;
   display: flex;

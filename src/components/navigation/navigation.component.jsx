@@ -10,6 +10,7 @@ import { ReactComponent as Swim } from "../../assets/swim.svg";
 
 import { NavBarDiv } from "./navigation.styles";
 import { OrangeButton } from "../button/button.styles";
+import ProfileDropdown from "../profile/profiledropdown";
 
 const Navigation = () => {
   const { currentThemeColors } = useContext(ThemeContext);
@@ -33,6 +34,7 @@ const Navigation = () => {
             <OrangeButton themeColors={currentThemeColors}>Log in</OrangeButton>
           </Link>
         )}
+        {profileIsOpen && <ProfileDropdown/>}
       </NavBarDiv>
       <Outlet />
     </Fragment>
