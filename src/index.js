@@ -6,14 +6,17 @@ import './index.css';
 import App from './App';
 import { UserProvider } from './contexts/usercontext';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from './contexts/themecontext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserProvider>
-        <App />
-      </UserProvider>
+      <ThemeProvider>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

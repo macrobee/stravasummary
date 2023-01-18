@@ -9,6 +9,7 @@ import { ActivityDiv } from "./activity.styles";
 
 
 const Activity = ({ activity }) => {
+  console.log(activity.map.summary_polyline);
   return (
     <ActivityDiv>
       <h2>{activity.name}</h2>
