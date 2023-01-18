@@ -7,6 +7,7 @@ import Home from './pages/home';
 import Summaries from "./components/summaries";
 import StravaRedirectPage from './pages/stravaredirect';
 import DataDisplay from './pages/datadisplay';
+import SignedOutPage from "./pages/signedout/signedout.component";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="summaries" element={<Summaries />}/>
         <Route path="redirect/*" element={<StravaRedirectPage/>}/>
         <Route path='dashboard' element={<DataDisplay/>}/>
+        <Route path="signedout" element={<SignedOutPage/>}/>
       </Route>
     </Routes>
   );
