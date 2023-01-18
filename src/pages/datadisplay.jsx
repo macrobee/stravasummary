@@ -8,8 +8,12 @@ import { collectActivityData } from "../utils/collectActivityData";
 import Activity from "../components/activity/activity.component";
 import UserSummary from "../components/usersummary/usersummary.component";
 
+import { PageDiv } from "./page.styles";
+import { ThemeContext } from "../contexts/themecontext";
+
 const DataDisplay = () => {
   const { user, token } = useContext(UserContext);
+  const {currentThemeColors} = useContext(ThemeContext);
   const [dataList, setDataList] = useState(null);
   const [dateRange, setDateRange] = useState({ before: null, after: null });
 
@@ -47,8 +51,8 @@ const DataDisplay = () => {
     console.log(dateRange.before, dateRange.after);
   };
   return (
-    <div>
-      {user ? <UserSummary user={user} /> : <p>error loading data</p>}
+    <PageDiv themeColors={currentThemeColors}>
+      
       <form onSubmit={handleSubmit}>
         Retrieve activity data
         <label htmlFor="beforedate">Before:</label>
@@ -77,7 +81,7 @@ const DataDisplay = () => {
             })
           : null}
       </div>
-    </div>
+    </PageDiv>
   );
 };
 export default DataDisplay;

@@ -1,9 +1,15 @@
+import { useContext } from "react";
+
+import {ThemeContext} from '../contexts/themecontext';
+
+import { PageDiv } from "./page.styles";
 
 const Home = () => {
+  const {currentThemeColors} = useContext(ThemeContext);
   return (
-    <div>
+    <PageDiv themeColors={currentThemeColors}>
       <h1>Home</h1>
-    </div>
+    </PageDiv>
   );
 };
 export default Home;

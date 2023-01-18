@@ -10,9 +10,10 @@ import { ThemeContext } from "../../contexts/themecontext";
 
 const ProfileDropdown = () => {
     const {user} = useContext(UserContext);
-    const {currentThemeColors} = useContext(ThemeContext);
+    const {currentThemeColors, toggleThemeColors} = useContext(ThemeContext);
     return <DropdownDiv themeColors={currentThemeColors}>
         <UserSummary user={user}/>
+        <button onClick={toggleThemeColors}>Night mode</button>
         <OrangeButton themeColors={currentThemeColors}>Sign Out</OrangeButton>
     </DropdownDiv>
 }

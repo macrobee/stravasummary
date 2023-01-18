@@ -3,13 +3,17 @@ import { useNavigate } from "react-router-dom";
 import _ from "lodash";
 
 import { UserContext } from "../contexts/usercontext";
+import { ThemeContext } from "../contexts/themecontext";
+
 import { cleanUpAuthToken } from "../utils/cleanupauthtoken";
 import { testAuthGetter } from "../utils/testauthgetter";
 
+import { PageDiv } from "./page.styles";
 // import { getUserData } from "../utils/getuserdata";
 
 const StravaRedirectPage = () => {
   const { user, setUser, setToken } = useContext(UserContext);
+  const {currentThemeColors} = useContext(ThemeContext);
   const navigate = useNavigate();
   useEffect(() => {
     const authenticate = async () => {
@@ -44,7 +48,9 @@ const StravaRedirectPage = () => {
       authenticate();
     }
   });
-  return <div>Loading...</div>;
+  return <PageDiv themeColors={currentThemeColors}>
+    <div>Loading...</div>
+  </PageDiv>;
 };
 
 export default StravaRedirectPage;

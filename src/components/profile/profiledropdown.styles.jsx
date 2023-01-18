@@ -6,8 +6,9 @@ flex-direction: column;
 gap: 20px;
 padding: 20px;
 position: absolute;
-top: 50px;
+top: 12vh;
 right: 0;
+box-sizing: border-box;
 background-color: ${props=>props.themeColors.background};
 border: 1px solid ${props=>props.themeColors.text};
 `
