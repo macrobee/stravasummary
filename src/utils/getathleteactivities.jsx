@@ -9,7 +9,7 @@ export const getAthleteActivities = async (before="", after="", accessToken) => 
       before +
       `&after=` +
       after +
-      `&page=1&per_page=20`;
+      `&page=1&per_page=100`;
       const response = await axios.get(urlString, { headers: { Authorization: `Bearer ${accessToken}` } }
       );
     console.log(response);

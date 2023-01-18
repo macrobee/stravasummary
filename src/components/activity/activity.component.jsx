@@ -13,6 +13,7 @@ const Activity = ({ activity }) => {
     <ActivityDiv>
       <h2>{activity.name}</h2>
       <h3>{activity.type}</h3>
+      <p>{activity.date}, {activity.startTime}</p>
       <div className="icon-container">
         <p><AchievementIcon height={20} width={20}/> {activity.achievementCount} </p>
         <p><CadenceIcon height={20} width={20}/> {activity.cadence}rpm</p>

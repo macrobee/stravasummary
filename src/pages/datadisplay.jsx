@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/usercontext";
 
 import { getAthleteActivities } from "../utils/getathleteactivities";
+import { collectActivityData } from "../utils/collectActivityData";
 
 import Activity from "../components/activity/activity.component";
 import UserSummary from "../components/usersummary/usersummary.component";
@@ -10,7 +11,7 @@ import UserSummary from "../components/usersummary/usersummary.component";
 const DataDisplay = () => {
   const { user, token } = useContext(UserContext);
   const [dataList, setDataList] = useState(null);
-  const [dateRange, setDateRange] = useState({ start: null, end: null });
+  const [dateRange, setDateRange] = useState({ before: null, after: null });
 
   const today = new Date();
   const oneMonthAgo = new Date();
@@ -18,8 +19,8 @@ const DataDisplay = () => {
 
   useEffect(() => {
     setDateRange({
-      start: Date.parse(today).toString().slice(0, 10),
-      end: Date.parse(oneMonthAgo).toString().slice(0, 10),
+      before: Date.parse(today).toString().slice(0, 10),
+      after: Date.parse(oneMonthAgo).toString().slice(0, 10),
     });
   }, []);
 
@@ -27,11 +28,13 @@ const DataDisplay = () => {
     console.log(token);
     console.log(token.accessToken);
     const newData = await getAthleteActivities(
-      dateRange.start,
-      dateRange.end,
+      // 1672425017//dec 30,
+      1671129017,//dec15 //this one is working??? returns data before this date
+      56,
       token.accessToken
     );
-    setDataList(newData.data);
+    await setDataList(newData.data);
+    console.log(dataList);
   };
 
   const handleSubmit = (e) => {
@@ -41,26 +44,26 @@ const DataDisplay = () => {
   const formInputChangeHandler = (e) => {
     const { name, value } = e.target;
     setDateRange({ ...dateRange, [name]: value });
-    console.log(dateRange.start, dateRange.end);
+    console.log(dateRange.before, dateRange.after);
   };
   return (
     <div>
       {user ? <UserSummary user={user} /> : <p>error loading data</p>}
       <form onSubmit={handleSubmit}>
         Retrieve activity data
-        <label htmlFor="startdate">Before:</label>
+        <label htmlFor="beforedate">Before:</label>
         <input
           type="date"
-          name="startdate"
-          id="startdate"
+          name="beforedate"
+          id="beforedate"
           defaultValue={today.toISOString().slice(0, 10)}
           onChange={formInputChangeHandler}
         />
-        <label htmlFor="enddate">After</label>
+        <label htmlFor="afterdate">After</label>
         <input
           type="date"
-          name="enddate"
-          id="enddate"
+          name="afterdate"
+          id="afterdate"
           defaultValue={oneMonthAgo.toISOString().slice(0, 10)}
           onChange={formInputChangeHandler}
         />
@@ -69,29 +72,8 @@ const DataDisplay = () => {
       <div>
         {dataList
           ? dataList.map((activity) => {
-              const {
-                name,
-                type,
-                achievement_count,
-                average_cadence,
-                average_heartrate,
-                average_speed,
-                average_watts,
-                kilojoules,
-                upload_id,
-              } = activity;
-              const activityData = {
-                name,
-                type,
-                achievementCount: achievement_count,
-                cadence: average_cadence,
-                hr: average_heartrate,
-                speed: average_speed,
-                watts: average_watts,
-                kj: kilojoules,
-              };
-
-              return <Activity activity={activityData} key={upload_id} />;
+            const activityData = collectActivityData(activity);
+              return <Activity activity={activityData} key={activityData.id} />;
             })
           : null}
       </div>
