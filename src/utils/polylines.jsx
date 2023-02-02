@@ -1,528 +1,357 @@
-const sampleEncodedPolyline = "a}snGrpfiNPuADy@CwAGgAiBiNi@oEkG{d@MqAE{@?mA@u@JkANcAR_AV{@\u@v@kAX[n@g@t@a@hA[nWsD~@KnFy@RG^CzXoE~@W^Qz@m@`A_A\QT?`@FZVR^L?JIXkA@[I{@Ac@Hs@L_@v@oAn@kA\aAXiAT}AJuBAmAQ_C}Igr@eBmLk@kFAk@HONGhI_Adi@sHdZgExTiD|K}AjSkChEu@`[uE`@@PXH^d@fE`@hCRfB^`CvBdQnAjJd@~C\hCTtAT~@nBhGX`AHf@l@~FHtATlBTnFH|@DjATpCv@tFlAxGz@tDV~@^|@HFBGAGGEABPn@pB|ExA~DbA`ClAjBbKxNhAtATLj@h@t@\|EfBtAp@|@x@v@lA`@|@d@dBVzA`@rCjL~{@rA~JLt@`@nDbClQlB`MlElWVrBxA`IXfCNjBB|AAhCBvADlAJnAbGvf@|CdUtAvKHZD@BIaBmMyB}Os@yFQ}@GSQULC?OkEu^MyAK_CCiGIcBe@yD_@yBCGCAEF@Hd@rB`@fDJfC@fGB`AF|@F?BYEWGEABBfAx@vGV|BHf@RjBjB`OEf@YV{Eh@_H`AsAXcIlA_KnA}Bb@i@Di@LmC^aO~A{RlCoLfBQAEIQN]HaOxBaCb@iY~DkSpC{JzAiRpC{@JQ?GEEOaA_IqAmJ{C_VQgAGCAFBBDGASoAwIwD_Z_Fg_@a@gDg@iD_Fs_@uAwJIQMIe@EaOhC_AAaAYi@]e@i@e@{@Us@W_Bu@aGMyA?}@Dk@NcARm@@GGITKh@u@n@c@v@UdC]J?NJJQZKzL}AzHiAf@WZYTa@Rk@NaAf@gN?qAIuAQyAWqAUgAa@_Bs@yB_CoGg@gBMy@G{@@}AJ{Ap@gE\eB\eAvEaLlAoCt@eA~AsAZ_@Ve@Rm@J}@?}@Ca@OcA[s@QWQQc@Yg@McABqe@pHmIfAg@?wBQ]Mk@u@KGKAWHQXEP?NBNFLRPJBTGHKJ_@Ca@GOIMKEK?KFKNEP?b@FNHHLDVCHIFMBOC]O[KEY@mAd@YNeBfBa@Zo@\oA\aMlBaGv@{AXqC^aFz@aEj@_Cd@uLfB_APm@Vy@d@g@d@e@j@i@|@[p@]hAY|AKfAGzAAfAJxARdB`BxL`B`MfAdJ|AzKn@~EHnAAn@GvAUzA";
+export const sampleEncodedPolyline =
+  "a}snGrpfiNPuADy@CwAGgAiBiNi@oEkG{d@MqAE{@?mA@u@JkANcAR_AV{@\\u@v@kAX[n@g@t@a@hA[nWsD~@KnFy@RG^CzXoE~@W^Qz@m@`A_A\\QT?`@FZVR^L?JIXkA@[I{@Ac@Hs@L_@v@oAn@kA\\aAXiAT}AJuBAmAQ_C}Igr@eBmLk@kFAk@HONGhI_Adi@sHdZgExTiD|K}AjSkChEu@`[uE`@@PXH^d@fE`@hCRfB^`CvBdQnAjJd@~C\\hCTtAT~@nBhGX`AHf@l@~FHtATlBTnFH|@DjATpCv@tFlAxGz@tDV~@^|@HFBGAGGEABPn@pB|ExA~DbA`ClAjBbKxNhAtATLj@h@t@\\|EfBtAp@|@x@v@lA`@|@d@dBVzA`@rCjL~{@rA~JLt@`@nDbClQlB`MlElWVrBxA`IXfCNjBB|AAhCBvADlAJnAbGvf@|CdUtAvKHZD@BIaBmMyB}Os@yFQ}@GSQULC?OkEu^MyAK_CCiGIcBe@yD_@yBCGCAEF@Hd@rB`@fDJfC@fGB`AF|@F?BYEWGEABBfAx@vGV|BHf@RjBjB`OEf@YV{Eh@_H`AsAXcIlA_KnA}Bb@i@Di@LmC^aO~A{RlCoLfBQAEIQN]HaOxBaCb@iY~DkSpC{JzAiRpC{@JQ?GEEOaA_IqAmJ{C_VQgAGCAFBBDGASoAwIwD_Z_Fg_@a@gDg@iD_Fs_@uAwJIQMIe@EaOhC_AAaAYi@]e@i@e@{@Us@W_Bu@aGMyA?}@Dk@NcARm@@GGITKh@u@n@c@v@UdC]J?NJJQZKzL}AzHiAf@WZYTa@Rk@NaAf@gN?qAIuAQyAWqAUgAa@_Bs@yB_CoGg@gBMy@G{@@}AJ{Ap@gE\\eB\\eAvEaLlAoCt@eA~AsAZ_@Ve@Rm@J}@?}@Ca@OcA[s@QWQQc@Yg@McABqe@pHmIfAg@?wBQ]Mk@u@KGKAWHQXEP?NBNFLRPJBTGHKJ_@Ca@GOIMKEK?KFKNEP?b@FNHHLDVCHIFMBOC]O[KEY@mAd@YNeBfBa@Zo@\\oA\\aMlBaGv@{AXqC^aFz@aEj@_Cd@uLfB_APm@Vy@d@g@d@e@j@i@|@[p@]hAY|AKfAGzAAfAJxARdB`BxL`B`MfAdJ|AzKn@~EHnAAn@GvAUzA";
 
-const sampleLatLngArray = {
+export const sampleLatLngArray = {
   type: "LineString",
   coordinates: [
-    [-80.32026, 44.50785],
-    [-80.31983, 44.50776],
-    [-80.31954, 44.50773],
-    [-80.3191, 44.50775],
-    [-80.31874, 44.50779],
-    [-80.31629, 44.50832],
-    [-80.31525, 44.50853],
-    [-80.30919, 44.50987],
-    [-80.30878, 44.50994],
-    [-80.30848, 44.50997],
-    [-80.30809, 44.50997],
-    [-80.30782, 44.50996],
-    [-80.30744, 44.5099],
-    [-80.3071, 44.50982],
-    [-80.30678, 44.50972],
-    [-80.30648, 44.5096],
-    [-80.30621, 44.50945],
-    [-80.30583, 44.50917],
-    [-80.30569, 44.50904],
-    [-80.30549, 44.5088],
-    [-80.30532, 44.50853],
-    [-80.30518, 44.50816],
-    [-80.30428, 44.50424],
-    [-80.30422, 44.50392],
-    [-80.30393, 44.50272],
-    [-80.30389, 44.50262],
-    [-80.30387, 44.50246],
-    [-80.30283, 44.49832],
-    [-80.30271, 44.498],
-    [-80.30262, 44.49784],
-    [-80.30239, 44.49754],
-    [-80.30207, 44.49721],
-    [-80.30198, 44.49706],
-    [-80.30198, 44.49695],
-    [-80.30202, 44.49678],
-    [-80.30214, 44.49664],
-    [-80.3023, 44.49654],
-    [-80.3023, 44.49647],
-    [-80.30225, 44.49641],
-    [-80.30187, 44.49628],
-    [-80.30173, 44.49627],
-    [-80.30143, 44.49632],
-    [-80.30125, 44.49633],
-    [-80.30099, 44.49628],
-    [-80.30083, 44.49621],
-    [-80.30043, 44.49593],
-    [-80.30005, 44.49569],
-    [-80.29972, 44.49554],
-    [-80.29935, 44.49541],
-    [-80.29888, 44.4953],
-    [-80.29829, 44.49524],
-    [-80.2979, 44.49525],
-    [-80.29726, 44.49534],
-    [-80.28906, 44.49709],
-    [-80.28691, 44.4976],
-    [-80.28573, 44.49782],
-    [-80.28551, 44.49783],
-    [-80.28543, 44.49778],
-    [-80.28539, 44.4977],
-    [-80.28507, 44.49605],
-    [-80.28353, 44.4893],
-    [-80.28253, 44.48495],
-    [-80.28168, 44.48146],
-    [-80.28121, 44.47939],
-    [-80.28051, 44.47613],
-    [-80.28024, 44.47512],
-    [-80.27917, 44.47063],
-    [-80.27918, 44.47046],
-    [-80.27931, 44.47037],
-    [-80.27947, 44.47032],
-    [-80.28047, 44.47013],
-    [-80.28116, 44.46996],
-    [-80.28168, 44.46986],
-    [-80.28233, 44.4697],
-    [-80.28524, 44.4691],
-    [-80.28706, 44.4687],
-    [-80.28786, 44.46851],
-    [-80.28855, 44.46836],
-    [-80.28898, 44.46825],
-    [-80.2893, 44.46814],
-    [-80.29063, 44.46758],
-    [-80.29096, 44.46745],
-    [-80.29116, 44.4674],
-    [-80.29244, 44.46717],
-    [-80.29287, 44.46712],
-    [-80.29342, 44.46701],
-    [-80.29462, 44.4669],
-    [-80.29493, 44.46685],
-    [-80.29531, 44.46682],
-    [-80.29604, 44.46671],
-    [-80.29727, 44.46643],
-    [-80.29868, 44.46604],
-    [-80.29959, 44.46574],
-    [-80.29991, 44.46562],
-    [-80.30022, 44.46546],
-    [-80.30026, 44.46541],
-    [-80.30022, 44.46539],
-    [-80.30018, 44.4654],
-    [-80.30015, 44.46544],
-    [-80.30017, 44.46545],
-    [-80.30041, 44.46536],
-    [-80.30152, 44.46479],
-    [-80.30248, 44.46434],
-    [-80.30313, 44.464],
-    [-80.30367, 44.46361],
-    [-80.3062, 44.46167],
-    [-80.30663, 44.4613],
-    [-80.3067, 44.46119],
-    [-80.30691, 44.46097],
-    [-80.30706, 44.4607],
-    [-80.30758, 44.45959],
-    [-80.30783, 44.45916],
-    [-80.30812, 44.45885],
-    [-80.30851, 44.45857],
-    [-80.30882, 44.4584],
-    [-80.30933, 44.45821],
-    [-80.30979, 44.45809],
-    [-80.31053, 44.45792],
-    [-80.32029, 44.45578],
-    [-80.32221, 44.45536],
-    [-80.32248, 44.45529],
-    [-80.32336, 44.45512],
-    [-80.32631, 44.45446],
-    [-80.32856, 44.45391],
-    [-80.33247, 44.45288],
-    [-80.33305, 44.45276],
-    [-80.33466, 44.45231],
-    [-80.33534, 44.45218],
-    [-80.33588, 44.4521],
-    [-80.33635, 44.45208],
-    [-80.33704, 44.45209],
-    [-80.33748, 44.45207],
-    [-80.33787, 44.45204],
-    [-80.33827, 44.45198],
-    [-80.34463, 44.45068],
-    [-80.34818, 44.44989],
-    [-80.35022, 44.44946],
-    [-80.35036, 44.44941],
-    [-80.35037, 44.44938],
-    [-80.35032, 44.44936],
-    [-80.34801, 44.44985],
-    [-80.3453, 44.45046],
-    [-80.34405, 44.45072],
-    [-80.34374, 44.45081],
-    [-80.34364, 44.45085],
-    [-80.34353, 44.45094],
-    [-80.34351, 44.45087],
-    [-80.34343, 44.45087],
-    [-80.33836, 44.45189],
-    [-80.33791, 44.45196],
-    [-80.33727, 44.45202],
-    [-80.33594, 44.45204],
-    [-80.33544, 44.45209],
-    [-80.33451, 44.45228],
-    [-80.3339, 44.45244],
-    [-80.33386, 44.45246],
-    [-80.33385, 44.45248],
-    [-80.33389, 44.45251],
-    [-80.33394, 44.4525],
-    [-80.33452, 44.45231],
-    [-80.33536, 44.45214],
-    [-80.33604, 44.45208],
-    [-80.33736, 44.45207],
-    [-80.33769, 44.45205],
-    [-80.338, 44.45201],
-    [-80.338, 44.45197],
-    [-80.33787, 44.45195],
-    [-80.33775, 44.45198],
-    [-80.33772, 44.45202],
-    [-80.33774, 44.45203],
-    [-80.3381, 44.45201],
-    [-80.3395, 44.45172],
-    [-80.34013, 44.4516],
-    [-80.34033, 44.45155],
-    [-80.34087, 44.45145],
-    [-80.34344, 44.45091],
-    [-80.34364, 44.45094],
-    [-80.34376, 44.45107],
-    [-80.34397, 44.45217],
-    [-80.3443, 44.45361],
-    [-80.34443, 44.45403],
-    [-80.34482, 44.45565],
-    [-80.34522, 44.45757],
-    [-80.3454, 44.4582],
-    [-80.34543, 44.45841],
-    [-80.3455, 44.45862],
-    [-80.34566, 44.45933],
-    [-80.34614, 44.4619],
-    [-80.34685, 44.46508],
-    [-80.34737, 44.46724],
-    [-80.34736, 44.46733],
-    [-80.34731, 44.46736],
-    [-80.34739, 44.46745],
-    [-80.34744, 44.4676],
-    [-80.34805, 44.47017],
-    [-80.34823, 44.47082],
-    [-80.34919, 44.47503],
-    [-80.34992, 44.47829],
-    [-80.35038, 44.48019],
-    [-80.35111, 44.48328],
-    [-80.35117, 44.48358],
-    [-80.35117, 44.48367],
-    [-80.35114, 44.48371],
-    [-80.35106, 44.48374],
-    [-80.34946, 44.48407],
-    [-80.34763, 44.48448],
-    [-80.34395, 44.48526],
-    [-80.34359, 44.48535],
-    [-80.34357, 44.48539],
-    [-80.34361, 44.4854],
-    [-80.34363, 44.48538],
-    [-80.34359, 44.48535],
-    [-80.34349, 44.48536],
-    [-80.34177, 44.48576],
-    [-80.33745, 44.48668],
-    [-80.33229, 44.4878],
-    [-80.33145, 44.48797],
-    [-80.3306, 44.48817],
-    [-80.32538, 44.48929],
-    [-80.3235, 44.48972],
-    [-80.32341, 44.48977],
-    [-80.32336, 44.48984],
-    [-80.32333, 44.49003],
-    [-80.32402, 44.4926],
-    [-80.32401, 44.49292],
-    [-80.32388, 44.49325],
-    [-80.32373, 44.49346],
-    [-80.32352, 44.49365],
-    [-80.32322, 44.49384],
-    [-80.32296, 44.49395],
-    [-80.32248, 44.49407],
-    [-80.32119, 44.49434],
-    [-80.32074, 44.49441],
-    [-80.32043, 44.49441],
-    [-80.32021, 44.49438],
-    [-80.31987, 44.4943],
-    [-80.31964, 44.4942],
-    [-80.3196, 44.49419],
-    [-80.31955, 44.49423],
-    [-80.31949, 44.49412],
-    [-80.31922, 44.49391],
-    [-80.31904, 44.49367],
-    [-80.31893, 44.49339],
-    [-80.31878, 44.49272],
-    [-80.31878, 44.49266],
-    [-80.31884, 44.49258],
-    [-80.31875, 44.49252],
-    [-80.31869, 44.49238],
-    [-80.31822, 44.49016],
-    [-80.31785, 44.48858],
-    [-80.31773, 44.48838],
-    [-80.3176, 44.48824],
-    [-80.31743, 44.48813],
-    [-80.31721, 44.48803],
-    [-80.31688, 44.48795],
-    [-80.31444, 44.48775],
-    [-80.31403, 44.48775],
-    [-80.3136, 44.4878],
-    [-80.31315, 44.48789],
-    [-80.31274, 44.48801],
-    [-80.31238, 44.48812],
-    [-80.3119, 44.48829],
-    [-80.31129, 44.48855],
-    [-80.30993, 44.48919],
-    [-80.30941, 44.48939],
-    [-80.30912, 44.48946],
-    [-80.30882, 44.4895],
-    [-80.30835, 44.48949],
-    [-80.30789, 44.48943],
-    [-80.30689, 44.48918],
-    [-80.30638, 44.48903],
-    [-80.30603, 44.48888],
-    [-80.30394, 44.4878],
-    [-80.30322, 44.48741],
-    [-80.30287, 44.48714],
-    [-80.30245, 44.48666],
-    [-80.30229, 44.48652],
-    [-80.3021, 44.4864],
-    [-80.30187, 44.4863],
-    [-80.30156, 44.48624],
-    [-80.30125, 44.48624],
-    [-80.30108, 44.48626],
-    [-80.30074, 44.48634],
-    [-80.30048, 44.48648],
-    [-80.30036, 44.48657],
-    [-80.30027, 44.48666],
-    [-80.30014, 44.48684],
-    [-80.30007, 44.48704],
-    [-80.30009, 44.48738],
-    [-80.30162, 44.49355],
-    [-80.30198, 44.49522],
-    [-80.30198, 44.49542],
-    [-80.30189, 44.49602],
-    [-80.30182, 44.49617],
-    [-80.30155, 44.49639],
-    [-80.30151, 44.49645],
-    [-80.3015, 44.49651],
-    [-80.30155, 44.49663],
-    [-80.30168, 44.49672],
-    [-80.30177, 44.49675],
-    [-80.30185, 44.49675],
-    [-80.30193, 44.49673],
-    [-80.302, 44.49669],
-    [-80.30209, 44.49659],
-    [-80.30211, 44.49653],
-    [-80.30207, 44.49642],
-    [-80.30201, 44.49637],
-    [-80.30185, 44.49631],
-    [-80.30168, 44.49633],
-    [-80.3016, 44.49637],
-    [-80.30153, 44.49642],
-    [-80.3015, 44.49648],
-    [-80.3015, 44.49654],
-    [-80.30154, 44.4966],
-    [-80.30162, 44.49666],
-    [-80.30171, 44.49669],
-    [-80.30189, 44.49669],
-    [-80.30197, 44.49665],
-    [-80.30202, 44.4966],
-    [-80.30205, 44.49653],
-    [-80.30203, 44.49641],
-    [-80.30198, 44.49636],
-    [-80.30191, 44.49632],
-    [-80.30183, 44.4963],
-    [-80.30168, 44.49632],
-    [-80.30154, 44.4964],
-    [-80.30151, 44.49646],
-    [-80.30152, 44.49659],
-    [-80.30171, 44.49698],
-    [-80.30179, 44.49711],
-    [-80.30231, 44.49762],
-    [-80.30245, 44.49779],
-    [-80.3026, 44.49803],
-    [-80.30275, 44.49843],
-    [-80.3033, 44.50068],
-    [-80.30358, 44.50197],
-    [-80.30371, 44.50243],
-    [-80.30387, 44.50316],
-    [-80.30417, 44.50429],
-    [-80.30439, 44.50526],
-    [-80.30458, 44.5059],
-    [-80.3051, 44.50809],
-    [-80.30519, 44.50841],
-    [-80.30531, 44.50864],
-    [-80.3055, 44.50893],
-    [-80.30569, 44.50913],
-    [-80.30591, 44.50932],
-    [-80.30622, 44.50953],
-    [-80.30647, 44.50967],
-    [-80.30684, 44.50982],
-    [-80.30731, 44.50995],
-    [-80.30767, 44.51001],
-    [-80.30813, 44.51005],
-    [-80.30849, 44.51006],
-    [-80.30894, 44.51],
-    [-80.30945, 44.5099],
-    [-80.31166, 44.50941],
-    [-80.31391, 44.50892],
-    [-80.3157, 44.50856],
-    [-80.31776, 44.50809],
-    [-80.31888, 44.50785],
-    [-80.31928, 44.5078],
-    [-80.31952, 44.50781],
-    [-80.31996, 44.50785],
-    [-80.32042, 44.50796],
+    { lat: -79.34631, lng: 43.76202 },
+    { lat: -79.34591, lng: 43.76232 },
+    { lat: -79.34499, lng: 43.7632 },
+    { lat: -79.34484, lng: 43.7635 },
+    { lat: -79.34489, lng: 43.7642 },
+    { lat: -79.34474, lng: 43.76447 },
+    { lat: -79.34438, lng: 43.76471 },
+    { lat: -79.34342, lng: 43.7649 },
+    { lat: -79.34285, lng: 43.76486 },
+    { lat: -79.34243, lng: 43.76465 },
+    { lat: -79.34217, lng: 43.76428 },
+    { lat: -79.34182, lng: 43.76349 },
+    { lat: -79.34169, lng: 43.7634 },
+    { lat: -79.34096, lng: 43.7633 },
+    { lat: -79.33935, lng: 43.76366 },
+    { lat: -79.3391, lng: 43.76361 },
+    { lat: -79.33839, lng: 43.76218 },
+    { lat: -79.33818, lng: 43.76204 },
+    { lat: -79.33778, lng: 43.76202 },
+    { lat: -79.3354, lng: 43.76265 },
+    { lat: -79.33519, lng: 43.76321 },
+    { lat: -79.33485, lng: 43.7636 },
+    { lat: -79.33257, lng: 43.76504 },
+    { lat: -79.33199, lng: 43.76522 },
+    { lat: -79.33019, lng: 43.76555 },
+    { lat: -79.33004, lng: 43.76553 },
+    { lat: -79.32993, lng: 43.76543 },
+    { lat: -79.32937, lng: 43.76383 },
+    { lat: -79.32876, lng: 43.76299 },
+    { lat: -79.32851, lng: 43.76141 },
+    { lat: -79.328, lng: 43.76086 },
+    { lat: -79.32612, lng: 43.75924 },
+    { lat: -79.32614, lng: 43.75907 },
+    { lat: -79.32633, lng: 43.75894 },
+    { lat: -79.32753, lng: 43.75856 },
+    { lat: -79.32755, lng: 43.75836 },
+    { lat: -79.32643, lng: 43.75675 },
+    { lat: -79.32608, lng: 43.75665 },
+    { lat: -79.32485, lng: 43.75678 },
+    { lat: -79.32435, lng: 43.75669 },
+    { lat: -79.32063, lng: 43.75436 },
+    { lat: -79.32065, lng: 43.75416 },
+    { lat: -79.32164, lng: 43.75392 },
+    { lat: -79.32175, lng: 43.75375 },
+    { lat: -79.32128, lng: 43.75264 },
+    { lat: -79.32083, lng: 43.75129 },
+    { lat: -79.31992, lng: 43.75021 },
+    { lat: -79.31952, lng: 43.74937 },
+    { lat: -79.31958, lng: 43.74925 },
+    { lat: -79.31974, lng: 43.74921 },
+    { lat: -79.32615, lng: 43.74776 },
+    { lat: -79.32628, lng: 43.74768 },
+    { lat: -79.32587, lng: 43.74585 },
+    { lat: -79.32618, lng: 43.74442 },
+    { lat: -79.32615, lng: 43.74398 },
+    { lat: -79.32468, lng: 43.74061 },
+    { lat: -79.3246, lng: 43.74019 },
+    { lat: -79.32487, lng: 43.7397 },
+    { lat: -79.32614, lng: 43.73867 },
+    { lat: -79.32723, lng: 43.73703 },
+    { lat: -79.3274, lng: 43.73659 },
+    { lat: -79.32724, lng: 43.736 },
+    { lat: -79.32684, lng: 43.73563 },
+    { lat: -79.3262, lng: 43.73545 },
+    { lat: -79.32556, lng: 43.73551 },
+    { lat: -79.32504, lng: 43.73566 },
+    { lat: -79.32469, lng: 43.73584 },
+    { lat: -79.31949, lng: 43.74034 },
+    { lat: -79.31926, lng: 43.74062 },
+    { lat: -79.31907, lng: 43.74113 },
+    { lat: -79.31434, lng: 43.74141 },
+    { lat: -79.31424, lng: 43.74115 },
+    { lat: -79.31443, lng: 43.74082 },
+    { lat: -79.31776, lng: 43.73758 },
+    { lat: -79.31779, lng: 43.73747 },
+    { lat: -79.31742, lng: 43.73723 },
+    { lat: -79.31721, lng: 43.7372 },
+    { lat: -79.31655, lng: 43.73775 },
+    { lat: -79.31632, lng: 43.73782 },
+    { lat: -79.31491, lng: 43.73708 },
+    { lat: -79.31282, lng: 43.73683 },
+    { lat: -79.31271, lng: 43.73651 },
+    { lat: -79.31249, lng: 43.7363 },
+    { lat: -79.31189, lng: 43.73463 },
+    { lat: -79.31086, lng: 43.7335 },
+    { lat: -79.31005, lng: 43.73151 },
+    { lat: -79.3097, lng: 43.72965 },
+    { lat: -79.30989, lng: 43.72882 },
+    { lat: -79.31039, lng: 43.72822 },
+    { lat: -79.31105, lng: 43.72769 },
+    { lat: -79.31167, lng: 43.72735 },
+    { lat: -79.31275, lng: 43.72692 },
+    { lat: -79.31337, lng: 43.72643 },
+    { lat: -79.31396, lng: 43.72485 },
+    { lat: -79.31576, lng: 43.72225 },
+    { lat: -79.31601, lng: 43.72171 },
+    { lat: -79.31597, lng: 43.72128 },
+    { lat: -79.31581, lng: 43.72097 },
+    { lat: -79.31461, lng: 43.71971 },
+    { lat: -79.3144, lng: 43.71939 },
+    { lat: -79.31258, lng: 43.71508 },
+    { lat: -79.3126, lng: 43.71489 },
+    { lat: -79.31291, lng: 43.71478 },
+    { lat: -79.31333, lng: 43.71491 },
+    { lat: -79.3136, lng: 43.71492 },
+    { lat: -79.31459, lng: 43.71469 },
+    { lat: -79.31634, lng: 43.71345 },
+    { lat: -79.31723, lng: 43.71227 },
+    { lat: -79.31786, lng: 43.71063 },
+    { lat: -79.31877, lng: 43.70974 },
+    { lat: -79.31871, lng: 43.70956 },
+    { lat: -79.31815, lng: 43.70933 },
+    { lat: -79.31807, lng: 43.70923 },
+    { lat: -79.31847, lng: 43.70872 },
+    { lat: -79.3188, lng: 43.70862 },
+    { lat: -79.32009, lng: 43.70856 },
+    { lat: -79.32039, lng: 43.70861 },
+    { lat: -79.32164, lng: 43.70909 },
+    { lat: -79.32083, lng: 43.70873 },
+    { lat: -79.32089, lng: 43.7085 },
+    { lat: -79.32117, lng: 43.70822 },
+    { lat: -79.32336, lng: 43.70803 },
+    { lat: -79.32483, lng: 43.7075 },
+    { lat: -79.32524, lng: 43.70722 },
+    { lat: -79.32538, lng: 43.70693 },
+    { lat: -79.32556, lng: 43.70577 },
+    { lat: -79.32583, lng: 43.70489 },
+    { lat: -79.32604, lng: 43.70464 },
+    { lat: -79.32859, lng: 43.70443 },
+    { lat: -79.32971, lng: 43.70451 },
+    { lat: -79.32995, lng: 43.70441 },
+    { lat: -79.33004, lng: 43.70421 },
+    { lat: -79.33004, lng: 43.70396 },
+    { lat: -79.3299, lng: 43.70385 },
+    { lat: -79.32892, lng: 43.70382 },
+    { lat: -79.32823, lng: 43.70352 },
+    { lat: -79.32794, lng: 43.70348 },
+    { lat: -79.327, lng: 43.70373 },
+    { lat: -79.32558, lng: 43.7037 },
+    { lat: -79.32518, lng: 43.70374 },
+    { lat: -79.32482, lng: 43.70389 },
+    { lat: -79.32409, lng: 43.70437 },
+    { lat: -79.32307, lng: 43.70464 },
+    { lat: -79.32248, lng: 43.70466 },
+    { lat: -79.31921, lng: 43.70432 },
+    { lat: -79.31564, lng: 43.70509 },
+    { lat: -79.31471, lng: 43.70507 },
+    { lat: -79.31384, lng: 43.70454 },
+    { lat: -79.31393, lng: 43.70431 },
+    { lat: -79.31545, lng: 43.70292 },
+    { lat: -79.31909, lng: 43.70011 },
+    { lat: -79.3191, lng: 43.69991 },
+    { lat: -79.31853, lng: 43.69883 },
+    { lat: -79.31834, lng: 43.6982 },
+    { lat: -79.34234, lng: 43.69305 },
+    { lat: -79.34245, lng: 43.69297 },
+    { lat: -79.34248, lng: 43.69274 },
+    { lat: -79.34264, lng: 43.69268 },
+    { lat: -79.35515, lng: 43.69026 },
+    { lat: -79.35496, lng: 43.68937 },
+    { lat: -79.35685, lng: 43.6847 },
+    { lat: -79.35808, lng: 43.68001 },
+    { lat: -79.35832, lng: 43.67887 },
+    { lat: -79.35824, lng: 43.67872 },
+    { lat: -79.3583, lng: 43.67845 },
+    { lat: -79.35847, lng: 43.6783 },
+    { lat: -79.359, lng: 43.67649 },
+    { lat: -79.35884, lng: 43.67626 },
+    { lat: -79.3585, lng: 43.67621 },
+    { lat: -79.35614, lng: 43.67671 },
+    { lat: -79.35343, lng: 43.67715 },
+    { lat: -79.34489, lng: 43.67884 },
+    { lat: -79.34325, lng: 43.67922 },
+    { lat: -79.33756, lng: 43.68027 },
+    { lat: -79.33231, lng: 43.68138 },
+    { lat: -79.32748, lng: 43.68247 },
+    { lat: -79.32447, lng: 43.68307 },
+    { lat: -79.31864, lng: 43.68432 },
+    { lat: -79.31782, lng: 43.68454 },
+    { lat: -79.31257, lng: 43.68561 },
+    { lat: -79.3079, lng: 43.68678 },
+    { lat: -79.30676, lng: 43.68698 },
+    { lat: -79.29988, lng: 43.68847 },
+    { lat: -79.29797, lng: 43.68897 },
+    { lat: -79.28971, lng: 43.69083 },
+    { lat: -79.28805, lng: 43.69127 },
+    { lat: -79.27742, lng: 43.69362 },
+    { lat: -79.27702, lng: 43.6939 },
+    { lat: -79.27628, lng: 43.69486 },
+    { lat: -79.27506, lng: 43.69655 },
+    { lat: -79.27437, lng: 43.69787 },
+    { lat: -79.2735, lng: 43.69892 },
+    { lat: -79.2723, lng: 43.70067 },
   ],
 };
 
-function decode() {
-    var encodedPolyline = document.getElementById("encoded-polyline").value;
-    document.getElementById("geojson").value = encodedPolyline;
-    var coords = polyline.toGeoJSON(encodedPolyline);
-    document.getElementById("geojson").value = JSON.stringify(coords);
+export const decode = (encodedPolyline) => {
+  var encodedPolyline = document.getElementById("encoded-polyline").value;
+  document.getElementById("geojson").value = encodedPolyline;
+  var coords = polyline.toGeoJSON(encodedPolyline);
+  document.getElementById("geojson").value = JSON.stringify(coords);
+};
+
+var polyline = {};
+
+const encode = (current, previous, factor) => {
+  current = Math.round(current * factor);
+  previous = Math.round(previous * factor);
+  var coordinate = current - previous;
+  coordinate <<= 1;
+  if (current - previous < 0) {
+    coordinate = ~coordinate;
   }
-  
-  var polyline = {};
-  
-  function encode(current, previous, factor) {
-    current = Math.round(current * factor);
-    previous = Math.round(previous * factor);
-    var coordinate = current - previous;
-    coordinate <<= 1;
-    if (current - previous < 0) {
-      coordinate = ~coordinate;
-    }
-    var output = '';
-    while (coordinate >= 0x20) {
-      output += String.fromCharCode((0x20 | (coordinate & 0x1f)) + 63);
-      coordinate >>= 5;
-    }
-    output += String.fromCharCode(coordinate + 63);
-    return output;
+  var output = "";
+  while (coordinate >= 0x20) {
+    output += String.fromCharCode((0x20 | (coordinate & 0x1f)) + 63);
+    coordinate >>= 5;
   }
-  
-  /**
-   * Decodes to a [latitude, longitude] coordinates array.
-   *
-   * This is adapted from the implementation in Project-OSRM.
-   *
-   * @param {String} str
-   * @param {Number} precision
-   * @returns {Array}
-   *
-   * @see https://github.com/Project-OSRM/osrm-frontend/blob/master/WebContent/routing/OSRM.RoutingGeometry.js
-   */
-  polyline.decode = function(str, precision) {
-    var index = 0,
-      lat = 0,
-      lng = 0,
-      coordinates = [],
-      shift = 0,
-      result = 0,
-      byte = null,
-      latitude_change,
-      longitude_change,
-      factor = Math.pow(10, precision || 5);
-  
-    // Coordinates have variable length when encoded, so just keep
-    // track of whether we've hit the end of the string. In each
-    // loop iteration, a single coordinate is decoded.
-    while (index < str.length) {
-  
-      // Reset shift, result, and byte
-      byte = null;
-      shift = 0;
-      result = 0;
-  
-      do {
-        byte = str.charCodeAt(index++) - 63;
-        result |= (byte & 0x1f) << shift;
-        shift += 5;
-      } while (byte >= 0x20);
-  
-      latitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
-  
-      shift = result = 0;
-  
-      do {
-        byte = str.charCodeAt(index++) - 63;
-        result |= (byte & 0x1f) << shift;
-        shift += 5;
-      } while (byte >= 0x20);
-  
-      longitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
-  
-      lat += latitude_change;
-      lng += longitude_change;
-  
-      coordinates.push([lat / factor, lng / factor]);
-    }
-  
-    return coordinates;
-  };
-  
-  /**
-   * Encodes the given [latitude, longitude] coordinates array.
-   *
-   * @param {Array.<Array.<Number>>} coordinates
-   * @param {Number} precision
-   * @returns {String}
-   */
-  polyline.encode = function(coordinates, precision) {
-    if (!coordinates.length) {
-      return '';
-    }
-  
-    var factor = Math.pow(10, precision || 5),
-      output = encode(coordinates[0][0], 0, factor) + encode(coordinates[0][1], 0, factor);
-  
-    for (var i = 1; i < coordinates.length; i++) {
-      var a = coordinates[i],
-        b = coordinates[i - 1];
-      output += encode(a[0], b[0], factor);
-      output += encode(a[1], b[1], factor);
-    }
-  
-    return output;
-  };
-  
-  function flipped(coords) {
-    var flipped = [];
-    for (var i = 0; i < coords.length; i++) {
-      flipped.push(coords[i].slice().reverse());
-    }
-    return flipped;
+  output += String.fromCharCode(coordinate + 63);
+  return output;
+};
+
+/**
+ * Decodes to a [latitude, longitude] coordinates array.
+ *
+ * This is adapted from the implementation in Project-OSRM.
+ *
+ * @param {String} str
+ * @param {Number} precision
+ * @returns {Array}
+ *
+ * @see https://github.com/Project-OSRM/osrm-frontend/blob/master/WebContent/routing/OSRM.RoutingGeometry.js
+ */
+polyline.decode = function (str, precision) {
+  var index = 0,
+    lat = 0,
+    lng = 0,
+    coordinates = [],
+    shift = 0,
+    result = 0,
+    byte = null,
+    latitude_change,
+    longitude_change,
+    factor = Math.pow(10, precision || 5);
+
+  // Coordinates have variable length when encoded, so just keep
+  // track of whether we've hit the end of the string. In each
+  // loop iteration, a single coordinate is decoded.
+  while (index < str.length) {
+    // Reset shift, result, and byte
+    byte = null;
+    shift = 0;
+    result = 0;
+
+    do {
+      byte = str.charCodeAt(index++) - 63;
+      result |= (byte & 0x1f) << shift;
+      shift += 5;
+    } while (byte >= 0x20);
+
+    latitude_change = result & 1 ? ~(result >> 1) : result >> 1;
+
+    shift = result = 0;
+
+    do {
+      byte = str.charCodeAt(index++) - 63;
+      result |= (byte & 0x1f) << shift;
+      shift += 5;
+    } while (byte >= 0x20);
+
+    longitude_change = result & 1 ? ~(result >> 1) : result >> 1;
+
+    lat += latitude_change;
+    lng += longitude_change;
+
+    coordinates.push([lat / factor, lng / factor]);
   }
-  
-  /**
-   * Encodes a GeoJSON LineString feature/geometry.
-   *
-   * @param {Object} geojson
-   * @param {Number} precision
-   * @returns {String}
-   */
-  polyline.fromGeoJSON = function(geojson, precision) {
-    if (geojson && geojson.type === 'Feature') {
-      geojson = geojson.geometry;
-    }
-    if (!geojson || geojson.type !== 'LineString') {
-      throw new Error('Input must be a GeoJSON LineString');
-    }
-    return polyline.encode(flipped(geojson.coordinates), precision);
-  };
-  
-  /**
-   * Decodes to a GeoJSON LineString geometry.
-   *
-   * @param {String} str
-   * @param {Number} precision
-   * @returns {Object}
-   */
-  polyline.toGeoJSON = function(str, precision) {
-    var coords = polyline.decode(str, precision);
-    return {
-      type: 'LineString',
-      coordinates: flipped(coords)
-    };
-  };
-  
-  if (typeof module === 'object' && module.exports) {
-    module.exports = polyline;
+
+  return coordinates;
+};
+
+/**
+ * Encodes the given [latitude, longitude] coordinates array.
+ *
+ * @param {Array.<Array.<Number>>} coordinates
+ * @param {Number} precision
+ * @returns {String}
+ */
+polyline.encode = function (coordinates, precision) {
+  if (!coordinates.length) {
+    return "";
   }
-  
+
+  var factor = Math.pow(10, precision || 5),
+    output =
+      encode(coordinates[0][0], 0, factor) +
+      encode(coordinates[0][1], 0, factor);
+
+  for (var i = 1; i < coordinates.length; i++) {
+    var a = coordinates[i],
+      b = coordinates[i - 1];
+    output += encode(a[0], b[0], factor);
+    output += encode(a[1], b[1], factor);
+  }
+
+  return output;
+};
+
+function flipped(coords) {
+  var flipped = [];
+  for (var i = 0; i < coords.length; i++) {
+    flipped.push(coords[i].slice().reverse());
+  }
+  return flipped;
+}
+
+/**
+ * Encodes a GeoJSON LineString feature/geometry.
+ *
+ * @param {Object} geojson
+ * @param {Number} precision
+ * @returns {String}
+ */
+polyline.fromGeoJSON = function (geojson, precision) {
+  if (geojson && geojson.type === "Feature") {
+    geojson = geojson.geometry;
+  }
+  if (!geojson || geojson.type !== "LineString") {
+    throw new Error("Input must be a GeoJSON LineString");
+  }
+  return polyline.encode(flipped(geojson.coordinates), precision);
+};
+
+/**
+ * Decodes to a GeoJSON LineString geometry.
+ *
+ * @param {String} str
+ * @param {Number} precision
+ * @returns {Object}
+ */
+polyline.toGeoJSON = function (str, precision) {
+  var coords = polyline.decode(str, precision);
+  return {
+    type: "LineString",
+    coordinates: flipped(coords),
+  };
+};
+
+if (typeof module === "object" && module.exports) {
+  module.exports = polyline;
+}

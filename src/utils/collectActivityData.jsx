@@ -13,11 +13,18 @@ const getLongDateFromString = (dateString)=>{
   const longDate = date.toLocaleDateString('en-US', options);
   return longDate;
 }
+const getDateTimeArray = (dateString)=>{
+  const dateTime = dateString.split("T");
+}
 const toRegularTime = (militaryTime) => {
-  const [hours, minutes] = militaryTime.split(':');
+  const [hours, minutes, seconds] = militaryTime.split(':');
   return `${(hours > 12) ? hours - 12 : hours}:${minutes}${(hours >= 12) ? 'PM' : 'AM'}`;
 }
-
+export const getEpochTimeSeconds = (date) => {
+  const newDate = new Date(date);
+  const epochTime = Math.floor(Date.parse(newDate) / 1000);
+  return epochTime;
+};
 export const collectActivityData = (activity)=>{
     const {
         name,
@@ -33,18 +40,23 @@ export const collectActivityData = (activity)=>{
         start_date_local,
         upload_id,
       } = activity;
+      const localStartTime = getLocalStartTime(start_date_local);
+      const localEpochStartTime = getEpochTimeSeconds(getLocalStartTime(start_date_local));
+      const centralEpochStartTime = getEpochTimeSeconds(getLocalStartTime(start_date));
+      const timeZoneDifference = localStartTime - centralEpochStartTime;
       const activityData = {
         name,
         type,
         achievementCount: achievement_count,
-        cadence: average_cadence,
-        hr: average_heartrate,
-        speed: average_speed,
-        watts: average_watts,
-        kj: kilojoules,
+        cadence: Math.round(average_cadence),
+        hr: Math.round(average_heartrate),
+        speed: Math.round(average_speed),
+        watts: Math.round(average_watts),
+        kj: Math.round(kilojoules),
         map: map,
-        date: getLongDateFromString(getActivityDate(start_date)),
-        startTime: toRegularTime(getLocalStartTime(start_date_local)),
+        date: getLongDateFromString(getActivityDate(start_date_local)),
+        startTime: toRegularTime(localStartTime),
+        offset: timeZoneDifference,
         id: upload_id,
 
       };

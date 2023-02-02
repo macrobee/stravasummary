@@ -1,8 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 
 import { UserContext } from "../contexts/usercontext";
+import { DataContext } from "../contexts/datacontext";
 
-import { getAthleteActivities } from "../utils/getathleteactivities";
+import {
+  getAthleteActivities,
+  getEpochTime,
+  epochToSeconds,
+  filterActivitiesInFetchedData,
+  fetchedDateStringToObject,
+} from "../utils/getathleteactivities";
 import { collectActivityData } from "../utils/collectActivityData";
 
 import Activity from "../components/activity/activity.component";
@@ -12,9 +19,10 @@ import { PageDiv } from "./page.styles";
 import { ThemeContext } from "../contexts/themecontext";
 
 const DataDisplay = () => {
-  const { user, token } = useContext(UserContext);
-  const {currentThemeColors} = useContext(ThemeContext);
-  const [dataList, setDataList] = useState(null);
+  const { token } = useContext(UserContext);
+  const { currentThemeColors } = useContext(ThemeContext);
+  const { dataList, setDataList } =
+    useContext(DataContext);
   const [dateRange, setDateRange] = useState({ before: null, after: null });
 
   const today = new Date();
@@ -22,21 +30,35 @@ const DataDisplay = () => {
   oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
   useEffect(() => {
-    setDateRange({
-      before: Date.parse(today).toString().slice(0, 10),
-      after: Date.parse(oneMonthAgo).toString().slice(0, 10),
-    });
-  }, []);
+    //set default date range to [today, one month ago]
 
+    const todayDate = getEpochTime(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate()
+    );
+    const oneMonthAgoDate = getEpochTime(
+      oneMonthAgo.getFullYear(),
+      oneMonthAgo.getMonth(),
+      oneMonthAgo.getDate()
+    );
+    setDateRange({
+      before: todayDate,
+      after: oneMonthAgoDate,
+    });
+    console.log(todayDate, oneMonthAgoDate);
+  }, []);
+  
   const handleGetActivities = async () => {
-    console.log(token);
-    console.log(token.accessToken);
+    const beforeEpochDate = dateRange.before;
+    const afterEpochDate = dateRange.after;
+    console.log(`retrieving data from ${beforeEpochDate} to ${afterEpochDate}`);
     const newData = await getAthleteActivities(
-      // 1672425017//dec 30,
-      1671129017,//dec15 //this one is working??? returns data before this date
-      56,
+      beforeEpochDate,
+      afterEpochDate,
       token.accessToken
     );
+    console.log(newData.data);
     await setDataList(newData.data);
     console.log(dataList);
   };
@@ -47,39 +69,48 @@ const DataDisplay = () => {
   };
   const formInputChangeHandler = (e) => {
     const { name, value } = e.target;
-    setDateRange({ ...dateRange, [name]: value });
-    console.log(dateRange.before, dateRange.after);
+    const [year, month, day] = value.split("-");
+    const newDateEpoch = getEpochTime(year, month - 1, day);
+    setDateRange({ ...dateRange, [name]: newDateEpoch }); //set date range to epoch time (ms)
   };
+
   return (
     <PageDiv themeColors={currentThemeColors}>
-      
       <form onSubmit={handleSubmit}>
         Retrieve activity data
-        <label htmlFor="beforedate">Before:</label>
+        <label htmlFor="before">Before:</label>
         <input
           type="date"
-          name="beforedate"
-          id="beforedate"
+          name="before"
+          id="before"
           defaultValue={today.toISOString().slice(0, 10)}
           onChange={formInputChangeHandler}
         />
-        <label htmlFor="afterdate">After</label>
+        <label htmlFor="after">After</label>
         <input
           type="date"
-          name="afterdate"
-          id="afterdate"
+          name="after"
+          id="after"
           defaultValue={oneMonthAgo.toISOString().slice(0, 10)}
           onChange={formInputChangeHandler}
         />
         <button type="submit">Get activities</button>
       </form>
-      <div>
-        {dataList
-          ? dataList.map((activity) => {
+      <button className="p-4 flex justify-center items-center rounded-sm border-current">
+        Calendar view
+      </button>
+      <div className="flex flex-col gap-1">
+        {dataList &&
+          dataList.map((activity) => {
             const activityData = collectActivityData(activity);
-              return <Activity activity={activityData} key={activityData.id} />;
-            })
-          : null}
+            return (
+              <Activity
+                activity={activityData}
+                key={activityData.id}
+                id={activityData.id}
+              />
+            );
+          })}
       </div>
     </PageDiv>
   );

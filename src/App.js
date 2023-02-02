@@ -5,6 +5,7 @@ import Navigation from "./components/navigation/navigation.component";
 import Authentication from "./pages/auth/authentication";
 import Home from './pages/home';
 import Summaries from "./components/summaries";
+import Graphics from './pages/graphics'
 import StravaRedirectPage from './pages/stravaredirect';
 import DataDisplay from './pages/datadisplay';
 import SignedOutPage from "./pages/signedout/signedout.component";
@@ -16,6 +17,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="authentication" element={<Authentication />} />
         <Route path="summaries" element={<Summaries />}/>
+        <Route path="graphics" element={<Graphics />}/>
         <Route path="redirect/*" element={<StravaRedirectPage/>}/>
         <Route path='dashboard' element={<DataDisplay/>}/>
         <Route path="signedout" element={<SignedOutPage/>}/>

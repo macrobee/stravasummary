@@ -11,19 +11,21 @@ import { ThemeContext } from "../../contexts/themecontext";
 
 const ProfileDropdown = () => {
   const { user, setUser, toggleProfileIsOpen } = useContext(UserContext);
-  const { currentThemeColors, toggleThemeColors } = useContext(ThemeContext);
+  const { currentTheme, currentThemeColors, toggleThemeColors } =
+    useContext(ThemeContext);
   const navigate = useNavigate();
 
   const logOutUser = () => {
     toggleProfileIsOpen();
     navigate("/");
     setUser(null);
-    
   };
   return (
     <DropdownDiv themeColors={currentThemeColors}>
       <UserSummary user={user} />
-      <button onClick={toggleThemeColors}>Night mode</button>
+      <button onClick={toggleThemeColors}>
+        {currentTheme === "light" ? "Dark" : "Light"} mode
+      </button>
       <OrangeButton onClick={logOutUser} themeColors={currentThemeColors}>
         Sign Out
       </OrangeButton>

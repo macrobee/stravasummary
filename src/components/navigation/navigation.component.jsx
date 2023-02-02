@@ -18,11 +18,14 @@ const Navigation = () => {
   return (
     <Fragment>
       <NavBarDiv themeColors={currentThemeColors}>
-        <h1>Strava Summaries</h1>
+        <Link to={`/`}>
+          <h1>Strava Summaries</h1>
+        </Link>
         {user ? (
           <>
             <Link to={`/dashboard`}>Data</Link> |{" "}
-            <Link to={`/summaries`}>Summaries</Link>{" "}
+            <Link to={`/summaries`}>Summaries</Link> | {" "}
+            <Link to={`/graphics`}>Graphics</Link> | {" "}
           </>
         ) : null}
         <Bike width={20} height={20} /> | <Run width={20} height={20} /> |{" "}

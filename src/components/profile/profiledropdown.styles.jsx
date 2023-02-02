@@ -11,4 +11,6 @@ right: 0;
 box-sizing: border-box;
 background-color: ${props=>props.themeColors.background};
 border: 1px solid ${props=>props.themeColors.text};
+border-top: none;
+
 `
