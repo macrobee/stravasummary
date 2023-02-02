@@ -4,16 +4,20 @@ import ReactDOM from 'react-dom/client';
 
 import './index.css';
 import App from './App';
-import { UserProvider } from './contexts/usercontext';
 import reportWebVitals from './reportWebVitals';
+
+import { UserProvider } from './contexts/usercontext';
 import { ThemeProvider } from './contexts/themecontext';
+import { DataProvider } from './contexts/datacontext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
       <ThemeProvider>
         <UserProvider>
-          <App />
+          <DataProvider>
+            <App />
+          </DataProvider>
         </UserProvider>
       </ThemeProvider>
     </BrowserRouter>
