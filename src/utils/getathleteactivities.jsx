@@ -3,7 +3,7 @@ import axios from "axios";
 export const getAthleteActivities = async (
   before = 56,
   after = 56,
-  accessToken
+  accessToken, page=1
 ) => {
   //before and after are received as epoch times in milliseconds and must be converted to seconds for Strava's API
   let urlString;
@@ -14,7 +14,7 @@ export const getAthleteActivities = async (
       Math.floor(before / 1000) +
       `&after=` +
       Math.floor(after / 1000) +
-      `&page=1&per_page=100`;
+      `&page=${page}&per_page=200`;
   } else {
     urlString =
       `https://www.strava.com/api/v3/athlete/activities?` +
@@ -22,7 +22,7 @@ export const getAthleteActivities = async (
       after +
       `&after=` +
       before +
-      `&page=1&per_page=100`;
+      `&page=${page}&per_page=200`;
   }
   try {
     console.log(urlString);

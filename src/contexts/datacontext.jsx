@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
-const removeActivity = (dataList, activityToRemoveId) => {
-  const newDataList = dataList.filter((activity) => {
+const removeActivity = (displayedDataList, activityToRemoveId) => {
+  const newDataList = displayedDataList.filter((activity) => {
     console.log(activity.upload_id === activityToRemoveId);
     return activity.upload_id !== activityToRemoveId;
   });
@@ -9,20 +9,37 @@ const removeActivity = (dataList, activityToRemoveId) => {
 };
 
 export const DataContext = createContext({
-  dataList: [],
-  setDataList: () => {},
+  displayedDataList: [],
+  fetchedData: [],
+  addToFetchedData: () => {},
+  setDisplayedDataList: () => {},
   filterDataList: () => {},
-
+  resetFetchedData: () => {},
 });
 
 export const DataProvider = ({ children }) => {
-  const [dataList, setDataList] = useState([]);
+  const [displayedDataList, setDisplayedDataList] = useState([]);
+  const [fetchedData, setFetchedData] = useState([]);
 
   const removeEntryFromList = (itemToRemoveId) => {
-    const newDataList = removeActivity(dataList, itemToRemoveId);
-    setDataList(newDataList);
+    const newDataList = removeActivity(displayedDataList, itemToRemoveId);
+    setDisplayedDataList(newDataList);
   };
 
-  const value = { dataList, setDataList, removeEntryFromList };
+  const addToFetchedData = (newData) => {
+    setFetchedData([...newData]);
+  };
+  const resetFetchedData = () => {
+    setFetchedData([]);
+  };
+
+  const value = {
+    displayedDataList,
+    setDisplayedDataList,
+    fetchedData,
+    addToFetchedData,
+    removeEntryFromList,
+    resetFetchedData,
+  };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
