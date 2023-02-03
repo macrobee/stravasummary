@@ -19,29 +19,29 @@ const Activity = ({ activity, id }) => {
   };
   return (
     <ActivityDiv>
-      <h2>{activity.name}</h2>
-      <h3>{activity.type}</h3>
-      <p>
+      <h2 className="font-bold text-lg">{activity.name}</h2>
+      <h3 className="font-extralight text-sm">{activity.type}</h3>
+      <p className="italic text-xs">
         {activity.date}, {activity.startTime}
       </p>
-      <div className="icon-container">
-        <p className="flex">
+      <div className="grid grid-cols-3 grid-rows-2 gap-3">
+        <p className="flex gap-2">
           <AchievementIcon height={20} width={20} /> {activity.achievementCount}{" "}
         </p>
-        <p className="flex">
-          <CadenceIcon height={20} width={20} /> {activity.cadence}rpm
+        <p className="flex gap-2">
+          <CadenceIcon height={20} width={20} /> {Number.isNaN(activity.cadence) ? "-" : activity.cadence}rpm
         </p>
-        <p className="flex">
-          <HeartRateIcon height={20} width={20} /> {activity.hr}bpm
+        <p className="flex gap-2">
+          <HeartRateIcon height={20} width={20} /> {Number.isNaN(activity.hr) ? "-" : activity.hr}bpm
         </p>
-        <p className="flex">
+        <p className="flex gap-2">
           <SpeedIcon height={20} width={20} /> {activity.speed}kph
         </p>
-        <p className="flex">
-          <PowerIcon height={20} width={20} /> {activity.watts}watts
+        <p className="flex gap-2">
+          <PowerIcon height={20} width={20} /> {Number.isNaN(activity.watts) ? "-" : activity.watts}watts
         </p>
-        <p className="flex">
-          <EnergyIcon height={20} width={20} /> {activity.kj}Kj
+        <p className="flex gap-2">
+          <EnergyIcon height={20} width={20} /> {Number.isNaN(activity.kj) ? "-" : activity.kj}Kj
         </p>
         <button onClick={handleRemoveClick}>Remove</button>
       </div>
